@@ -128,18 +128,26 @@ Now you can create another user tenant.
 
 When you are done, you will need to cleanup and remove the resources so that you are not charged for any usage in your account. This is a 2 phase process.
 
-### Phase 1
+##### DANGER: THIS WILL TEARDOWN YOUR AWS ENVIRONMENT - ONLY USE FOR NON-PRODUCTION OR NON-CRITICAL ENVIRONMENTS
 
-This phase is done from the client side.
-- To Clean up - first login with System tenant you created with the install process.
-- go to Tenents for a list of Tenants created.
-- Start with the user Tenants, click on the delete icon to remove each tenant and cleanup roles, and userpools.
-- Finally delete the system Tenant using the same procedure.
-- To remove the client S3 bucket and other resources, 
-  - make sure you are at the top level of client directory
-  - sls remove
+### Phase 1 - Client Teardown
 
-### Phase 2
+#### Tenant-specific data, roles, and userpools
+
+1. Login with System tenant you created with the install process.
+2. Go to Tenents in the top navbar. 
+3. Click on the Delete icon to remove each tenant. This will remove each tenants data, associated roles, and userpools.
+4. Finally delete the system Tenant using the same procedure.
+
+#### Identity Client AWS Infrastructure
+
+- From the the **`<code-dir>/app.envyforge.com.identity/client/`** directory run the following command: 
+
+```
+.../client > sls remove
+```
+
+### Phase 2 - Services Teardown
 
 - Go the **`<code-dir>/app.envyforge.com.identity/service/readme.md`** document and follow the Cleanup Process.
 
