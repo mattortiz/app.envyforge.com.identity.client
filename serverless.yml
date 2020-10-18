@@ -1,4 +1,4 @@
-service: saasserverless-client
+service: envyforge-identity-client
 
 plugins:
   - serverless-s3-sync

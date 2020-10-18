@@ -27,6 +27,7 @@ const env = {
     TENANT_ADMIN_ROLE: "TenantAdmin",
     TENANT_USER_ROLE: "TenantUser",
 
+    // todo: change to proper name
     SERVICE_PROJECT_NAME: "SaaSServerless",
   },
 
@@ -63,7 +64,8 @@ const env = {
     // this will override the above URLS.
     // in the line below change 'YOUR_DEV_SERVICE_API_URL' to be the serviceDiscovery URL from the SaaSServerless-Identity Application
 
-    SERVICE_URL: "YOUR_DEV_SERVICE_API_URL",
+    // todo: change to retrieve from config settings
+    SERVICE_URL: "https://pexdd8kwhi.execute-api.us-west-2.amazonaws.com/dev",
     SERVICE_PROJECT_NAME: "SaaSServerless",
   },
 
