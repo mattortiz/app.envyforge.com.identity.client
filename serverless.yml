@@ -1,4 +1,4 @@
-service: saasserverless-client
+service: envyforge-identity-client
 
 plugins:
   - serverless-s3-sync
@@ -7,7 +7,7 @@ custom:
   # Our stage is based on what is passed in when running serverless
   # commands. Or falls back to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
-  region: us-east-1
+  region: us-west-2
   # function directory
   common: "../services/common/"
   project: ${self:service}
@@ -17,12 +17,11 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs12.x
   stage: dev
-  region: us-east-1
+  region: us-west-2
   environment:
     stage: ${self:custom.stage}
-
 
 resources:
   Resources:
@@ -48,15 +47,8 @@ resources:
               Action:
                 - s3:GetObject
               Resource:
-                Fn::Join: [
-                  "", [
-                  "arn:aws:s3:::",
-                  {
-                    "Ref": "StaticWebSite"
-                  },
-                  "/*"
-                ]
-                ]
+                Fn::Join:
+                  ["", ["arn:aws:s3:::", { "Ref": "StaticWebSite" }, "/*"]]
 
   Outputs:
     StaticWebSiteURL:
