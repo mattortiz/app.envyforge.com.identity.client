@@ -28,7 +28,7 @@ const env = {
     TENANT_USER_ROLE: "TenantUser",
 
     // todo: change to proper name
-    SERVICE_PROJECT_NAME: "SaaSServerless",
+    SERVICE_PROJECT_NAME: "EnvyForgeIdentity",
   },
 
   dev: {
@@ -62,11 +62,11 @@ const env = {
     // you need to provide the app with a SERVICE_URL.
     // get this URL from the outputs when deploying the ServiceDiscovery service and uncomment the line below.
     // this will override the above URLS.
-    // in the line below change 'YOUR_DEV_SERVICE_API_URL' to be the serviceDiscovery URL from the SaaSServerless-Identity Application
+    // in the line below change 'YOUR_DEV_SERVICE_API_URL' to be the serviceDiscovery URL from the EnvyForgeIdentity Application
 
     // todo: change to retrieve from config settings
-    SERVICE_URL: "https://pexdd8kwhi.execute-api.us-west-2.amazonaws.com/dev",
-    SERVICE_PROJECT_NAME: "SaaSServerless",
+    SERVICE_URL: "https://re716p8o2f.execute-api.us-west-2.amazonaws.com/dev",
+    SERVICE_PROJECT_NAME: "EnvyForgeIdentity",
   },
 
   prod: {},

@@ -1,4 +1,4 @@
-# SaaSServerless-Client
+# EnvyForgeIdentity Client
 
 ## React + Redux application that works with the SaaS Serverless Identity microservices architecture.
 
