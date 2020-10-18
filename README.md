@@ -1,4 +1,4 @@
-# EnvyForgeIdentity Client
+# EnvyForge Identity Client
 
 ## React + Redux application that works with the SaaS Serverless Identity microservices architecture.
 
@@ -14,45 +14,45 @@ Some difference between the AWS Quickstart and this implementation are the follo
 
 ## Prerequisites
 You will need the following items installed before you can start the installation.
-- Node.js v8.10 or later
+- Node.js v12.x or later
 - Serverless CLI v1.9.0 or later. See [Serverless Quickstart](https://serverless.com/framework/docs/providers/aws/guide/quick-start/) for more details.
 - An AWS account. A free tier account will work with minimal cost. The account should have admin permissions, or ability to create resources on AWS.
 - Setup provider Credentials. See [Serverless Quickstart](https://serverless.com/framework/docs/providers/aws/guide/quick-start/) for more details.
-- Clone github repository.
-```
-git clone https://github.com/bwsolutions/SaaSServerless-Client.git
-```
-- Install and Deploy ["SaaSServerless-Identity"](https://github.com/bwsolutions/SaaSServerless-Identity)
-  
+- Clone this repository.
+- **Install and deploy the identity service.** Instructions are in the **`<code-dir>/app.envyforge.com.identity/service/readme.md`**.
+
 ## Configuration
 You will need to make a couple configuration changes before you build the application. 
 
-##### Create Bucket / website name
+### Create Bucket / website name
 - edit "serverless.yml" file. Change the following line at the top of the file to something unique. This is used as part of a bucket name for the static websiteURL.
 
 Change:
 ```
-service: saasserverless-client
+service: envyforge-identity-client
 ```
 to:
 ```
-service: saasserverless-client-yourname
+service: <your-identity-name>
 ```
-##### Change AWS region
-- The client assumes this is being deployed in the us-east-1 region. If you installed the services in another region you will need to update the client configuration.
+
+### Change AWS region
+
+- The client assumes this is being deployed in the us-west-2 region. If you installed the services in another region you will need to update the client configuration.
   - Edit the src/App/config.js file
   - this file has different sections based on stage. default is dev, so under dev: change the apiGateway.REGION to be a valid AWS region name.  
-    
-##### Set Service Discovery ENDPOINT
-First we need to go to SaaSServerless-Identity installation and get the ServiceEndpoint.
+
+### Set the Service Discovery Endpoint
+
+First we need to go to app.envyforge.com.identity.service installation and get the ServiceEndpoint.
 ```
-# in the SaaSServerless-Identity directory 
+# in the <code-dir>/app.envyforge.com.identity/service directory 
 cd serviceDiscovery
 sls info -v 
 ```
 - Find "ServiceEndpoint" under Stack Output. Copy the URL. it should look something like below where API_REST_ID is a unique code created by AWS.
 ``` 
-https://API_REST_ID.execute-api.us-east-1.amazonaws.com/dev
+https://API_REST_ID.execute-api.us-west-2.amazonaws.com/dev
 ```
 - using the above URL, we need to update the src/App/config.js file.   
 
@@ -62,14 +62,13 @@ https://API_REST_ID.execute-api.us-east-1.amazonaws.com/dev
    SERVICE_URL: 'YOUR_DEV_SERVICE_API_URL',
 ```
 
-
 ## Installation
+
 Install the packages from top level Client directory. The following steps need to be done once to install the needed components.
 ```
-cd SaasServerless-Client
+cd <code-dir>/app.envyforge.com.identity/client/
 npm install
 ```
-
   
 ### To run from S3 static website
 
@@ -78,13 +77,17 @@ Next we need build and deploy the app to the static website. The step will creat
 npm run build
 npm run deploy 
 ```
+
 ### To update application and website
+
 If you make any code changes, you will need to build the application and they sync with the S3 bucket. The following commands will do this.
 ``` 
 npm run build
 sls s3sync
 ```
+
 ### To start application
+
 Access the static website. Use the URL for the S3 Bucket. To get this URL enter the following command and get the URL from the "StaticWebsiteURL" under Stack Outputs
 ``` 
 # make sure you are in the top level directory
@@ -103,26 +106,30 @@ There are some slight differences between the two applications.
 Otherwise the applications should work virtually the same.
 
 ### Initial setup
-The first step we need to do is create they system User or System Admin Tenant. 
-- Go to  "StaticWebsiteURL/install"
+The first step we need to do is create they system User or System Admin Tenant.
+- Navigate to  **`<StaticWebsiteURL>/install`**.
 where StaticWebsiteURL is the URL of the website (see 'To Start Application' section above)
-- Fill in the form. You MUST provide a valid email address, because an email will be sent with a temporary password to login.
-- You should get a message saying the "Admin Registration Successful".
+  - Fill in the form. You MUST provide a valid email address, because an email will be sent with a temporary password to login.
+  - You should get a message saying the "Admin Registration Successful".
 - Check your email for a message with your temporary password.
-- go to 'StaticWebsiteURL/login'
-- enter your email address and the temporary password. You will be promted to change the password.
-- once completed, you have a admin tenant setup and can check status of services and view tenants.
+- Navigate to **`<StaticWebsiteURL>/login`**
+  - Enter your email address and the temporary password. You will be promted to change the password.
+  - Once completed, you have an admin tenant setup and can check status of services and view tenants.
 
 ### Register new tenant
+
 Now you can create another user tenant.
-- click on the register link
-- fill out the form using a Different email than the Admin tenant.
+- Click on the register link
+- Fill out the form using a Different email than the Admin tenant.
 - When you login with this new account, you will need to change the password.
 - Then you can play with the products and orders part of the application.
 
 ## Cleanup
+
 When you are done, you will need to cleanup and remove the resources so that you are not charged for any usage in your account. This is a 2 phase process.
-####Phase1
+
+### Phase 1
+
 This phase is done from the client side.
 - To Clean up - first login with System tenant you created with the install process.
 - go to Tenents for a list of Tenants created.
@@ -131,10 +138,13 @@ This phase is done from the client side.
 - To remove the client S3 bucket and other resources, 
   - make sure you are at the top level of client directory
   - sls remove
-####Phase 2
-- Go the [SaaSServerless-Identity README.md](https://github.com/bwsolutions/SaaSServerless-Identity) document and follow the Cleanup Process.
+
+### Phase 2
+
+- Go the **`<code-dir>/app.envyforge.com.identity/service/readme.md`** document and follow the Cleanup Process.
 
 ## Authors
 - Bill Stoltz - [BWS](http://boosterwebsolutions.com)
+- Matt Ortiz - [Envy Forge](https://www.envyforge.com)
 - Based on an angularjs client from the [AWS Quickstart SaaS identity and isolation with Amazon Cognito](https://aws.amazon.com/quickstart/saas/identity-with-cognito/)
 
