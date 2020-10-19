@@ -27,11 +27,11 @@ You will need to make a couple configuration changes before you build the applic
 
 Change:
 ```
-service: EnvyForgeIdentity-Client
+service: envyforgeidentity-client
 ```
 to:
 ```
-service: <YourNameIdentity-Client>
+service: <yournameidentity-client>
 ```
 
 ### Change AWS region
