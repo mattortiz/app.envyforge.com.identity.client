@@ -1,4 +1,4 @@
-service: envyforge-identity-client
+service: envyforgeidentity-client
 
 plugins:
   - serverless-s3-sync
