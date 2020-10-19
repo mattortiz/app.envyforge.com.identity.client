@@ -65,7 +65,7 @@ const env = {
     // in the line below change 'YOUR_DEV_SERVICE_API_URL' to be the serviceDiscovery URL from the EnvyForgeIdentity Application
 
     // todo: change to retrieve from config settings
-    SERVICE_URL: "https://x7tyc3jxi3.execute-api.us-west-2.amazonaws.com/dev",
+    SERVICE_URL: "https://i7xcttqeph.execute-api.us-west-2.amazonaws.com/dev",
     SERVICE_PROJECT_NAME: "EnvyForgeIdentity",
   },
 

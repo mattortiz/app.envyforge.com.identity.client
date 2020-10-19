@@ -60,19 +60,17 @@ https://API_REST_ID.execute-api.us-west-2.amazonaws.com/dev
    SERVICE_URL: 'YOUR_DEV_SERVICE_API_URL',
 ```
 
-## Installation
+## Install & Deploy the Client Application (Website)
 
-Run the following from the **`<code-dir>/app.envyforge.com.identity/client/`** directory.
+We've made available a first time setup script that will install dependencies, build the client, deploy the S3 bucket, and sync the build output to the bucket. It simply makes multiple nmp calls that you will also find useful seperatly.
 
-1. Install package dependencies.
+##### THIS WILL CREATE THE CLIENT APPLICATION AND DEPLOY THE NECESSARY AWS RESOURCES. RUN ON FIRST TYPE SETUP ONLY. 
+
+- To build and deploy the client app to AWS, run the setup-client.sh from the **`<code-dir>/app.envyforge.com.identity/client/`** directory.
+
 ```
-.../client > npm install
-```
-2. Build and deploy the client app to the static website. The step will build the client, the S3 bucket, and sync the build output to the bucket.
-```
-.../client > npm run build
-.../client > npm run deploy
-```
+.../client > ./setup-client.sh
+``` 
 
 ## Update the Application (Website)
 
